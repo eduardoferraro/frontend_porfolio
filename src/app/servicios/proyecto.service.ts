@@ -9,8 +9,11 @@ import { ProyectoModel } from '../modelos/proyecto-model';
 })
 
 export class ProyectoService {
+    /* Local */
+    /* URL = 'http://localhost:8080/proyecto/'; */
 
-    URL = 'http://localhost:8080/proyecto/';
+    /* Produccion */
+    URL = 'https://backend-eduardoferraro.koyeb.app/proyecto/';
 
 
     constructor(private httpClient: HttpClient) { }

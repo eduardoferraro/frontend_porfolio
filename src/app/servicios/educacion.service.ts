@@ -8,7 +8,13 @@ import { EducacionModel } from '../modelos/educacion-model';
 })
 
 export class EducacionService {
-    URL = 'http://localhost:8080/educacion/';
+    /* Local */
+    /* URL = 'http://localhost:8080/educacion/'; */
+
+    /* Produccion */
+    URL = 'https://backend-eduardoferraro.koyeb.app/educacion/';
+    
+    
 
 
     constructor(private httpClient: HttpClient) { }

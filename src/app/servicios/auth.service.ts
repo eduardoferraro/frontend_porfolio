@@ -9,9 +9,11 @@ import { NuevoUsuario } from '../modelos/nuevo-usuario';
     providedIn: 'root'
 })
 export class AuthService {
+    /* Local */
+    /* authURL = 'http://localhost:8080/auth/'; */
 
-    authURL = 'http://localhost:8080/auth/';
-
+    /* Produccion */
+    authURL = 'https://backend-eduardoferraro.koyeb.app/auth/';
 
     constructor(private httpClient: HttpClient) {}
     

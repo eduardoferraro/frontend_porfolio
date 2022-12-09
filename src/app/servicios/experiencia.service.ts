@@ -10,7 +10,11 @@ import { ExperienciaModel } from '../modelos/experiencia-model';
 
 export class ExperienciaService {
 
-    URL = 'http://localhost:8080/experiencia/';
+    /* Local */
+    /* URL = 'http://localhost:8080/experiencia/'; */
+
+    /* Produccion */
+    URL = 'https://backend-eduardoferraro.koyeb.app/experiencia/';
 
 
     constructor(private httpClient: HttpClient) { }

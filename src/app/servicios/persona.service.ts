@@ -10,7 +10,11 @@ import { PersonaModel } from '../modelos/persona.model';
 })
 
 export class PersonaService {
-    URL = "http://localhost:8080/persona/";
+    /* Local */
+    /* URL = 'http://localhost:8080/persona/'; */
+
+    /* Produccion */
+    URL = "https://backend-eduardoferraro.koyeb.app/persona/";
 
     constructor(private httpClient: HttpClient) { }
 

@@ -1,0 +1,223 @@
+<div class="container-fluid mt-1 mb-1 p-3 rounded-3" id="contenedor">
+    <div class="row">
+        <div class="col-lg-3 col-sm-12">
+            <img class="img-fluid rounded-circle  mx-auto p-sm-4 d-block" src="assets/images/educacion.jpg" alt="">
+
+        </div>
+
+
+        <div class="col-lg-9 col-sm-12 pr-3">
+
+            <h2 class="text-light">Agregar formación educativa</h2>
+
+            <form (ngSubmit)="onCreate()" #f="ngForm">
+                <div class="row">
+                    <div class="col col-sm-12 p-2">
+
+                        <div class="form-floating">
+                            <input 
+                                type="text" 
+                                id="nombreTitulo"
+                                class="form-control" 
+                                placeholder="Titulo obtenido" 
+                                name="nombreTitulo" 
+                                [(ngModel)]="nombreTitulo"
+                                
+                                #nomTit="ngModel"
+                                maxlength="50"
+                                minlength="10"
+                                [ngClass]="{'is-valid': !nomTit.invalid, 'is-invalid': nomTit.invalid}"
+                                required
+                            >
+                            <label for="nombreTitulo">Titulo obtenido</label>
+
+                            <div class="text-light" *ngIf="nomTit.invalid && (nomTit.dirty || nomTit.touched)">
+                                <div *ngIf="nomTit.errors?.['minlength']">
+                                    Se debe introducir un nombre con 10 caracteres como mínimo
+                                </div>
+                                <div class="text-light" *ngIf="nomTit.errors?.['required']">
+                                    Se debe ingresar un nombre de título
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg col-sm-12 p-2">
+                        <div class="form-floating">
+                            <input 
+                                type="text"
+                                id="nombreInstitucion" 
+                                class="form-control" 
+                                placeholder="Nombre de la institucion"
+                                 name="nombreInstitucion"
+                                [(ngModel)]="nombreInstitucion" 
+                                
+                                #nomIns="ngModel"
+                                maxlength="50"
+                                minlength="10"
+                                [ngClass]="{'is-valid': !nomIns.invalid, 'is-invalid': nomIns.invalid}"
+                                required
+                            >
+                            <label for="nombreInstitucion">Nombre de la institucion</label>
+
+                            <div class="text-light" *ngIf="nomIns.invalid && (nomIns.dirty || nomIns.touched)">
+                                <div *ngIf="nomIns.errors?.['minlength']">
+                                    Se debe introducir un nombre con 10 caracteres como mínimo
+                                </div>
+                                <div class="text-light" *ngIf="nomIns.errors?.['required']">
+                                    Se debe ingresar un nombre de institución
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3 p-2">
+                        <div class="form-floating">
+                            <input 
+                                type="number" 
+                                id="anioDesde" 
+                                class="form-control" 
+                                placeholder="Año desde"
+                                name="anioDesde" 
+                                [(ngModel)]="anioDesde" 
+                                
+                                #ad="ngModel"
+                                max="2023"
+                                min="1900"
+                                step="1"
+                                [ngClass]="{'is-valid': !ad.invalid, 'is-invalid': ad.invalid}"
+                                required
+                            >
+
+                            <div class="text-light" *ngIf="ad.invalid && (ad.dirty || ad.touched)">
+                                <div *ngIf="ad.errors?.['min']">
+                                    Se debe introducir un numero mayor a 1900
+                                </div>
+                                <div *ngIf="ad.errors?.['max']">
+                                    Se debe introducir un numero mayor a 2023
+                                </div> 
+                                <div class="text-light" *ngIf="ad.errors?.['required']">
+                                    Se debe ingresar un valor en Año Desde
+                                </div>
+                            </div>
+
+                            <label for="anioDesde">Año Desde</label>
+                        </div>
+                    </div>
+
+                    <div class="col-3 p-2">
+                        <div class="form-floating">
+                            <input 
+                                type="number"
+                                id="anioHasta" 
+                                class="form-control" 
+                                placeholder="Año hasta" 
+                                name="anioHasta" 
+                                [(ngModel)]="anioHasta" 
+                                
+                                #ah="ngModel"
+                                max="2023"
+                                min="1900"
+                                [ngClass]="{'is-valid': !ah.invalid, 'is-invalid': ah.invalid}"
+                                required
+                            >
+                            
+                            <div class="text-light" *ngIf="ah.invalid && (ah.dirty || ah.touched)">
+                                <div *ngIf="ah.errors?.['min']">
+                                    Se debe introducir un año mayor a 1900
+                                </div>
+                                <div *ngIf="ah.errors?.['max']">
+                                    Se debe introducir un año menor a 2023
+                                </div>
+                                <div class="text-light" *ngIf="ah.errors?.['required']">
+                                    Se debe ingresar un valor en Año Hasta
+                                </div>
+                            </div>
+
+                            <label for="anioHasta">Año Hasta</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row text-center">
+                    
+                    <div class="col m-2 p-2 bg-light rounded-3">
+                        <div><small>Imagen</small></div>
+                        <img [src]="imagenService.url" width="100 px">
+
+                    </div>
+                </div>
+
+                
+                <div class="row">
+                    <div class="col p-2">
+                        <div class="form-control">
+                            <label for="imagenInstitucion">Nueva Imagen</label>
+                            
+                            <input 
+                                type="hidden"
+                                id="imagen"
+                                class="form-control"
+                                name="imagen"
+                                [(ngModel)]="imagenService.url"
+
+                                #imagen="ngModel"
+                                maxlength="500"
+                                minlength="10"
+                                required
+                            >
+
+                            <input 
+                                type="file" 
+                                id="imagenInstitucion" 
+                                class="form-control" 
+                                name="imagenInstitucion" 
+                                (change)="uploadImagen($event)" accept=".jpg, .png"
+                                [ngClass]="{'is-valid': !imagen.invalid, 'is-invalid': imagen.invalid}"
+                                required 
+                            >
+
+
+                            <div class="text-light" *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
+                                <div class="text-light" *ngIf="imagen.errors?.['minlength']">
+                                    Se debe ingresar una imagen
+                                </div>
+                                
+                                <div class="text-light" *ngIf="imagen.errors?.['required']">
+                                    Se debe ingresar una imagen
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="row text-center">
+                    <div class="d-grid col-6 p-2">
+                        <button class="btn btn-primary" [disabled]="!f.valid">
+                            Guardar cambios
+                        </button>
+
+
+                    </div>
+
+                    <div class="col-6 d-grid p-2">
+                        <button class="btn btn-danger" type="button" (click)="onCancel()">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+
+    </div>
+</div>

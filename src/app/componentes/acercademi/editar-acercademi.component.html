@@ -1,0 +1,315 @@
+
+<div class="container-fluid mt-1 mb-1 p-3 rounded-3" id="contenedor"  *ngIf="personaModel">
+
+    <div class="row">
+        <div class="col-lg-3 col-sm-12">
+            <img class="img-fluid rounded-circle  mx-auto p-sm-4 d-block" src="assets/images/user.png" alt="">
+
+        </div>
+        
+        <div class="col-lg-9 col-sm-12 pr-3">
+            <h2 class="text-light">Modificar datos de perfil</h2>
+   
+            <form (ngSubmit)="onUpdate()"  #f="ngForm">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12 p-2">
+                        <div class="form-floating">
+                            <input 
+                                type="text" 
+                                id="nombre"
+                                class="form-control" 
+                                placeholder="Nombre" 
+                                name="nombre" 
+                                [(ngModel)]="personaModel.nombre"
+                                
+                                #nom="ngModel"
+                                maxlength="50"
+                                minlength="2"
+                                [ngClass]="{'is-valid': !nom.invalid, 'is-invalid': nom.invalid}"
+                                required
+                            >
+                            <label for="nombre">Nombre</label>
+
+                            <div class="text-light" *ngIf="nom.invalid && (nom.dirty || nom.touched)">
+                                <div *ngIf="nom.errors?.['minlength']">
+                                    Se debe ingresar un nombre con 2 caracteres como mínimo
+                                </div>
+                                <div class="text-light" *ngIf="nom.errors?.['required']">
+                                    Se debe ingresar un nombre
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-12 p-2">
+                        <div class="form-floating">
+                            <input 
+                                type="text"
+                                id="apellido" 
+                                class="form-control" 
+                                placeholder="Apellido"
+                                 name="apellido"
+                                [(ngModel)]="personaModel.apellido" 
+                                
+                                #ape="ngModel"
+                                maxlength="50"
+                                minlength="2"
+                                [ngClass]="{'is-valid': !ape.invalid, 'is-invalid': ape.invalid}"
+                                required
+                            >
+                            <label for="apellido">Apellido</label>
+
+                            <div class="text-light" *ngIf="ape.invalid && (ape.dirty || ape.touched)">
+                                <div *ngIf="ape.errors?.['minlength']">
+                                    Se debe ingresar un apellido con 2 caracteres como mínimo
+                                </div>
+                                <div class="text-light" *ngIf="ape.errors?.['required']">
+                                    Se debe ingresar un apellido
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-2 col-sm-12 p-2">
+                        <div class="form-floating">
+                            <input 
+                                type="number" 
+                                id="edad"
+                                class="form-control" 
+                                placeholder="Edad" 
+                                name="edad" 
+                                [(ngModel)]="personaModel.edad"
+                                
+                                #ed="ngModel"
+                                max="120"
+                                min="15"
+                                step="1"
+                                [ngClass]="{'is-valid': !ed.invalid, 'is-invalid': ed.invalid}"
+                                required
+                            >
+                            <label for="edad">Edad</label>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12 p-2">
+                        <div class="form-floating">
+                            <input 
+                                type="text"
+                                id="residencia" 
+                                class="form-control" 
+                                placeholder="Lugar de residencia"
+                                 name="residencia"
+                                [(ngModel)]="personaModel.residencia" 
+                                
+                                #res="ngModel"
+                                maxlength="50"
+                                minlength="2"
+                                [ngClass]="{'is-valid': !res.invalid, 'is-invalid': res.invalid}"
+                                required
+                            >
+                            <label for="residencia">Residencia</label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-sm-12 p-2">
+                        <div class="form-floating">
+                            <input 
+                                type="text"
+                                id="telefono" 
+                                class="form-control" 
+                                placeholder="Telefono"
+                                 name="telefono"
+                                [(ngModel)]="personaModel.telefono" 
+                                
+                                #tel="ngModel"
+                                maxlength="15"
+                                minlength="10"
+                                [ngClass]="{'is-valid': !res.invalid, 'is-invalid': res.invalid}"                       
+                                required
+                            >
+                            <label for="telefono">Teléfono</label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-12 p-2">
+                        <div class="form-floating">
+                            <input 
+                                type="email"
+                                id="email" 
+                                class="form-control" 
+                                placeholder="Email"
+                                name="email"
+                                [(ngModel)]="personaModel.email" 
+                                
+                                #mail="ngModel"
+                                maxlength="50"
+                                minlength="7"
+                                [ngClass]="{'is-valid': !mail.invalid, 'is-invalid': mail.invalid}"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                required
+                                
+                            >
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- texto validaciones edad, residencia telefono e email -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-light" *ngIf="ed.invalid && (ed.dirty || ed.touched)">
+                            <div *ngIf="ed.errors?.['min']">
+                                Edad debe ser mayor a 15.
+                            </div>
+        
+                            <div *ngIf="ed.errors?.['max']">
+                                Edad debe ser menir a 120.
+                            </div>
+        
+                            <div class="text-light" *ngIf="ed.errors?.['required']">
+                                Se debe ingresar una edad
+                            </div>
+                        </div>
+        
+        
+        
+                        <div class="text-light" *ngIf="res.invalid && (res.dirty || res.touched)">
+                            <div *ngIf="res.errors?.['minlength']">
+                                Residencia debe tener 2 caracteres como mínimo
+                            </div>
+                            <div class="text-light" *ngIf="res.errors?.['required']">
+                                Se debe ingresar una residencia
+                            </div>
+                        </div>
+        
+        
+        
+                        <div class="text-light" *ngIf="tel.invalid && (tel.dirty || tel.touched)">
+                            <div *ngIf="tel.errors?.['minlength']">
+                                Telefono debe tener 10 caracteres como mínimo
+                            </div>
+                            <div class="text-light" *ngIf="tel.errors?.['required']">
+                                Se debe ingresar una numero de teléfono
+                            </div>
+                           
+
+
+                        </div>
+        
+        
+        
+                        <div class="text-light" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
+                            <div *ngIf="mail.errors?.['minlength']">
+                                Email debe tener 7 caracteres como mínimo
+                            </div>
+        
+                            <div class="text-light" *ngIf="mail.errors?.['pattern']">
+                                Se debe ingresar un email valido
+                            </div>
+        
+                            <div class="text-light" *ngIf="mail.errors?.['required']">
+                                Se debe ingresar un email
+                            </div>
+                        </div>
+    
+                    </div>
+                    
+    
+
+                    </div>
+
+                <!-- ------------------------ -->
+
+                
+                <div class="row">
+                    <div class="col col-sm-12 p-2">  
+                        <div class="form-floating">
+                            <textarea 
+                                class="form-control" 
+                                id="textoPersona" 
+                                name="textoPersona"
+                                [(ngModel)]="personaModel.textoPersona" 
+                                style="height: 150px;"
+                                
+                                #txt="ngModel"
+                                maxlength="500"
+                                minlength="5"
+                                [ngClass]="{'is-valid': !txt.invalid, 'is-invalid': txt.invalid}"
+                                required
+                            >
+                            </textarea> 
+                            <label for="textoPersona">Acerca de mi</label>
+
+                            <div class="text-light" *ngIf="txt.invalid && (txt.dirty || txt.touched)">
+                                <div *ngIf="txt.errors?.['minlength']">
+                                    Acerca de mi debe tener 5 caracteres como mínimo
+                                </div>
+
+                                <div class="text-light" *ngIf="txt.errors?.['required']">
+                                    Debe ingresar un valor de acerca de mi
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                <div class="row text-center">
+                    
+                    <div class="col m-2 p-2 bg-light rounded-3">
+                        <div><small>Imagen actual</small></div>
+                        <img src="{{personaModel.imagenPersona}}" width="100 px">
+                        
+                    </div>
+                    <div class="col m-2 p-2 bg-light rounded-3">
+                        <div><small>Imagen nueva</small></div>
+                        <img [src]="imagenService.url" width="100 px">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col p-2">
+                        <div class="form-control">
+                            <label for="imagenPersona">Nueva Imagen</label>
+                         
+                            <input 
+                                type="file" 
+                                id="imagenPersona" 
+                                class="form-control" 
+                                name="imagenPersona" 
+                                (change)="uploadImagen($event)" accept=".jpg, .png"
+                                
+                            >
+
+                        </div>
+                    </div>
+                    
+                </div>
+
+               
+                <div class="row text center">
+                    <div class="d-grid col-6 p-2">
+                        <button class="btn btn-primary" [disabled]="!f.valid">
+                            Guardar cambios
+                        </button>
+
+
+                    </div>
+
+                    <div class="col-6 d-grid p-2">
+                        <button class="btn btn-danger" type="button" (click)="onCancel()">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>

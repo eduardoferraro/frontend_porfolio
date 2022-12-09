@@ -1,0 +1,334 @@
+
+
+<div class="container-fluid mt-3 mb-1 p-3 rounded-3" id="contenedor" *ngIf="experienciaModel">
+    <div class="row">
+        <div class="col-lg-3 col-sm-12">
+            <img class="img-fluid rounded-circle  mx-auto p-sm-4 d-block" src="assets/images/experiencia.jpg" alt="">
+
+        </div>
+
+
+        <div class="col-lg-9 col-sm-12 pr-3">
+
+            <h2 class="text-light">Modificar experiencia laboral</h2>
+
+            <form (ngSubmit)="onUpdate()" #f="ngForm">
+                <div class="row">
+                    <div class="col col-sm-12 p-2">
+
+                        <div class="form-floating">
+                            <input 
+                                type="text" 
+                                id="nombreEmpresa"
+                                class="form-control" 
+                                placeholder="Nombre de la Empresa" 
+                                name="nombreEmpresa" 
+                                [(ngModel)]="experienciaModel.nombreEmpresa"
+                                
+                                #nomEmp="ngModel"
+                                maxlength="50"
+                                minlength="1"
+                                [ngClass]="{'is-valid': !nomEmp.invalid, 'is-invalid': nomEmp.invalid}"
+                                required
+                            >
+                            <label for="nombreTitulo">Nombre de la Empresa</label>
+
+                            <div class="text-light" *ngIf="nomEmp.invalid && (nomEmp.dirty || nomEmp.touched)">
+                                <div *ngIf="nomEmp.errors?.['minlength']">
+                                    Introducir un nombre de empresa con 1 caracter como mínimo
+                                </div>
+                                <div class="text-light" *ngIf="nomEmp.errors?.['required']">
+                                    Se debe ingresar un nombre de empresa
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-3 p-2">
+                        <div class="form-floating">
+                            <input 
+                                type="number" 
+                                id="mesDesde" 
+                                class="form-control" 
+                                placeholder="Mes desde"
+                                name="mesDesde" 
+                                [(ngModel)]="experienciaModel.mesDesde" 
+                                
+                                #md="ngModel"
+                                max="12"
+                                min="1"
+                                step="1"
+                                [ngClass]="{'is-valid': !md.invalid, 'is-invalid': md.invalid}"
+                                required
+                            >
+
+                           
+
+                            <label for="mesDesde">Mes Desde</label>
+                        </div>
+                    </div>
+
+               
+                    <div class="col-3 p-2">
+                        <div class="form-floating">
+                            <input 
+                                type="number" 
+                                id="anioDesde" 
+                                class="form-control" 
+                                placeholder="Año desde"
+                                name="anioDesde" 
+                                [(ngModel)]="experienciaModel.anioDesde" 
+                                
+                                #ad="ngModel"
+                                max="2023"
+                                min="1900"
+                                step="1"
+                                [ngClass]="{'is-valid': !ad.invalid, 'is-invalid': ad.invalid}"
+                                required
+                            >
+
+                            <label for="anioDesde">Año Desde</label>
+                        </div>
+                    </div>
+
+                    
+                    <div class="col-3 p-2">
+                        <div class="form-floating">
+                            <input 
+                                type="number" 
+                                id="mesHasta" 
+                                class="form-control" 
+                                placeholder="Mes Hasta"
+                                name="mesHasta" 
+                                [(ngModel)]="experienciaModel.mesHasta" 
+                                
+                                #mh="ngModel"
+                                max="12"
+                                min="1"
+                                step="1"
+                                [ngClass]="{'is-valid': !mh.invalid, 'is-invalid': mh.invalid}"
+                                required
+                            >
+
+                            <label for="mesHasta">Mes Hasta</label>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    <div class="col-3 p-2">
+                        <div class="form-floating">
+                            <input 
+                                type="number"
+                                id="anioHasta" 
+                                class="form-control" 
+                                placeholder="Año hasta" 
+                                name="anioHasta" 
+                                [(ngModel)]="experienciaModel.anioHasta" 
+                                
+                                #ah="ngModel"
+                                max="2023"
+                                min="1900"
+                                [ngClass]="{'is-valid': !ah.invalid, 'is-invalid': ah.invalid}"
+                                required
+                            >
+
+                            <label for="anioHasta">Año Hasta</label>
+                        </div>
+                    </div>
+                </div>
+
+            
+                <!-- mensajes de validacion -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-light" *ngIf="md.invalid && (md.dirty || md.touched)">
+                            <div *ngIf="md.errors?.['min']">
+                                Mes desde debe ser mayor o igual a 1
+                            </div>
+                            <div *ngIf="md.errors?.['max']">
+                                Mes desde debe ser menor o igual 12
+                            </div> 
+                            <div class="text-light" *ngIf="md.errors?.['required']">
+                                Se debe ingresar un valor en Mes Desde
+                            </div>
+                        </div>
+
+                        <div class="text-light" *ngIf="ad.invalid && (ad.dirty || ad.touched)">
+                            <div *ngIf="ad.errors?.['min']">
+                                Año desde debe ser mayor a 1900
+                            </div>
+                            <div *ngIf="ad.errors?.['max']">
+                                Año desde debe ser menor o igual a 2023
+                            </div> 
+                            <div class="text-light" *ngIf="ad.errors?.['required']">
+                                Se debe ingresar un valor en Año Desde
+                            </div>
+                        </div>
+
+                        <div class="text-light" *ngIf="mh.invalid && (mh.dirty || mh.touched)">
+                            <div *ngIf="mh.errors?.['min']">
+                                Mes hasta debe ser mayor o igual a 1
+                            </div>
+                            <div *ngIf="mh.errors?.['max']">
+                                Mes hasta debe ser menor o igual 12
+                            </div> 
+                            <div class="text-light" *ngIf="mh.errors?.['required']">
+                                Se debe ingresar un valor en Mes Desde
+                            </div>
+                        </div>
+
+                        <div class="text-light" *ngIf="ah.invalid && (ah.dirty || ah.touched)">
+                            <div *ngIf="ah.errors?.['min']">
+                                Año hasta debe ser mayor a 1900
+                            </div>
+                            <div *ngIf="ah.errors?.['max']">
+                                ño hasta debe ser menor a 2023
+                            </div>
+                            <div class="text-light" *ngIf="ah.errors?.['required']">
+                                Se debe ingresar un valor en Año Hasta
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-sm-12 p-2">  
+                        <div class="form-floating">
+                            <textarea 
+                                class="form-control" 
+                                id="descripcionExperiencia" 
+                                name="descripcionExperiencia"
+                                placeholder="Descripcion de la experiencia" 
+                                [(ngModel)]="experienciaModel.descripcionExperiencia" 
+                                style="height: 120px;"
+                                
+                                #desExp="ngModel"
+                                maxlength="500"
+                                minlength="5"
+                                [ngClass]="{'is-valid': !desExp.invalid, 'is-invalid': desExp.invalid}"
+                                required
+                            >
+                            </textarea> 
+                            <label for="descripcionExperiencia">Descripcion de la experiencia</label>
+
+                            <div class="text-light" *ngIf="desExp.invalid && (desExp.dirty || desExp.touched)">
+                                <div *ngIf="desExp.errors?.['minlength']">
+                                    Descripcion experiencia debe tener 5 caracteres como mínimo
+                                </div>
+
+                                <div class="text-light" *ngIf="desExp.errors?.['required']">
+                                    Se debe ingresar un valor en descripcion experiencia
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-sm-12 p-2">  
+                        <div class="form-group">
+                            <input 
+                                type="checkbox"
+                                id="esActual" 
+                                class="form-check-input pr-2"
+                                name="esActual" 
+                                [(ngModel)]="experienciaModel.esActual" 
+                                
+                            >
+                            <label for="esActual" class="text-light">&nbsp; Es mi empleo actual</label>
+                        </div>
+                        
+
+                    </div>
+                </div>
+
+                <div class="row text-center">
+                    <div class="d-grid col-6 p-2">
+                        <button class="btn btn-primary" [disabled]="!f.valid">
+                            Guardar cambios
+                        </button>
+                    </div>
+
+                    <div class="col-6 d-grid p-2">
+                        <button class="btn btn-danger" type="button" (click)="onCancel()">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+
+<!-- 
+
+
+
+
+
+
+<div class="container" *ngIf="experienciaModel">
+    <div class="row">
+        <div>
+            <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+                <div class="form-group">
+                    <label for="nombreEmpresa">Nombre de la empresa</label>
+                    <input type="text" class="form-control" id="nombreEmpresa" name="nombreEmpresa"
+                        [(ngModel)]="experienciaModel.nombreEmpresa" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcionExperiencia">Descripcion de la experiencia</label>
+                    <input type="text" class="form-control" id="descripcionExperiencia" name="descripcionExperiencia"
+                        [(ngModel)]="experienciaModel.descripcionExperiencia" required>
+                </div>
+                <div class="form-group">
+                    <label for="mesDesde">Mes Desde</label>
+                    <input type="text" class="form-control" id="mesDesde" name="mesDesde" [(ngModel)]="experienciaModel.mesDesde"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="anioDesde">Año Desde</label>
+                    <input type="text" class="form-control" id="anioDesde" name="anioDesde" [(ngModel)]="experienciaModel.anioDesde"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mesHasta">Mes Hasta</label>
+                    <input type="text" class="form-control" id="mesHasta" name="mesHasta" [(ngModel)]="experienciaModel.mesHasta"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="anioHasta">Año Hasta</label>
+                    <input type="text" class="form-control" id="anioHasta" name="anioHasta" [(ngModel)]="experienciaModel.anioHasta"
+                        required>
+                </div>
+                <div class="form-group">
+                    <input class="form-check-input" type="checkbox" id="esActual" name="esActual" [(ngModel)]="experienciaModel.esActual"
+                        required>
+                    <label class="form-check-label" for="esActual">
+                        Es mi empleo actual.
+                    </label>
+                </div>
+
+                <button class="btn btn-primary" >
+                    Guardar cambios
+                </button>
+
+                <button class="btn btn-danger" type="button"  (click)="onCancel()">
+                    Cancelar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+ -->

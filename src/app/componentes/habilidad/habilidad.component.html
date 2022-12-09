@@ -1,0 +1,90 @@
+<!-- habilidades -->
+<div class="container-fluid" id="habilidad" *ngIf="habilidadModel">
+    <div class="row border-bottom">
+        <div class="col-sm-3 d-flex justify-content-center align-items-center">
+            <div class="col-8">
+                <img class="img-fluid rounded-circle  mx-auto d-block" src="assets/images/habilidades.jpg" alt="">
+
+                <div class="d-flex justify-content-center align-items-center pt-4">
+                    <a href="#top" class="text-dark ">
+                        <button type="button" id="btn_arriba" class="btn btn-sm" data-toggle="tooltip"
+                            data-placement="top" title="Arriba">
+                            <span class="accion-ico">
+                                &nbsp;<i class="fa-solid fa-circle-up fa-sm"></i>&nbsp;
+                            </span>
+                        </button>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-9 p-4">
+
+            <div class="row pt-3 pb-3">
+                <div class="col-10 d-flex justify-content-start ">
+                    <h1 class="display-4">Habilidades</h1>
+                </div>
+
+
+                <div class="col-1 d-flex justify-content-center">
+                </div>
+
+                <div class="col-1 d-flex justify-content-center" *ngIf="isLogged">
+                    <button type="button" class="btn  btn-sm btn-grey border-0" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Agregar habilidad" routerLink="/nuevahabilidad">
+                        <span>
+                            <i class="fa-solid fa-plus" style='font-size:20px; vertical-align: middle;'></i>
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- input datos dinamicos -->
+
+            <div class="row pb-3" *ngFor="let hab of habilidadModel">
+                <div class="col-10">
+                    <div class="progress" style="height: 40px;">
+                        <div 
+                            class="progress-bar progress-bar-striped progress-bar-animated" 
+                            role="progressbar"
+                            aria-valuemin="0" 
+                            aria-valuemax="100"  
+                            style="background-color:#0b6a82;"
+                            [ngStyle]="{'width': hab.cantidadHabilidad + '%'}" 
+                        >
+                            <div class="text-small">{{hab.nombreHabilidad}} ({{hab.cantidadHabilidad}}%)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-1 d-flex justify-content-center" *ngIf="isLogged">
+
+                    <button type="button" class="btn  btn-sm btn-grey border-0" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Modificar habilidad"
+                        routerLink="/editarhabilidad/{{hab.idHabilidad}}">
+                        <span>
+                            <i class="fa-solid fa-pen-to-square" style='font-size:20px; vertical-align: middle;'></i>
+                        </span>
+                    </button>
+                </div>
+
+                <div class="col-1 d-flex justify-content-center" *ngIf="isLogged">
+
+                    <button type="button" class="btn  btn-sm btn-grey border-0" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Eliminar habilidad" (click)="borrar(hab.idHabilidad)">
+                        <span>
+                            <i class="fa-solid fa-trash-can" style='font-size:20px; vertical-align: middle;'></i>
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

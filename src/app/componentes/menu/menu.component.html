@@ -1,0 +1,197 @@
+ <!-- menu -->
+ <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #052c36;">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Navegacion">
+            <span class="navbar-toggler-icon"></span>
+        </button> 
+
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav mb-2 mb-lg-0 me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#acerca">Acerca de mi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#educacion">Formacion Educativa</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#experiencia">Experiencia Laboral</a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#habilidades">Habilidades</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#proyectos">Mis Proyectos</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <button 
+            type="button" 
+            class="btn" 
+            (click)="abrirLoginModal()"
+            data-bs-toggle="tooltip" 
+            data-bs-placement="top" 
+            title="Ingreso usuarios"
+            style="background-color: #052c36;"
+            *ngIf="!isLogged"
+
+        >
+            <span id="user-img" class="p-2">
+                <i class="fa-solid fa-circle-user" style='font-size:35px; vertical-align: middle;'></i>
+            </span>
+        </button>
+
+                
+        <button 
+            type="button" 
+            class="btn" 
+            (click)="onLogOut()"
+            data-bs-toggle="tooltip" 
+            data-bs-placement="top" 
+            title="Cerrar sesion"
+            style="background-color: #052c36;"
+            *ngIf="isLogged"
+        >
+            
+            <span id="user-img" class="p-2">
+                <i class="fa-solid fa-right-from-bracket" style='font-size:35px; vertical-align: middle;'></i>
+            </span>
+        </button>
+        
+        <!-- Login Modal -->
+        <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="login-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content p-2" style="background-color: #0b6a82;">
+                    
+                        <div class="container">
+                            <div class="row">
+                                <div class="col d-flex justify-content-end" >
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" ></button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col d-flex justify-content-center">
+                                    <span id="login-img">
+                                        <i class="fa-solid fa-house-user"></i>
+                                    </span>
+                                  
+                                </div>
+                                  
+                            </div>
+
+                            <div class="row">
+                                <div class="col d-flex justify-content-center ">
+                                    <h2 class="modal-title text-light" id="login-modal-label">Ingreso administración</h2>
+                                </div>
+                                
+                            </div>
+
+                        </div>      
+                   
+                    <form #f = "ngForm" (ngSubmit) = "onLogin()">
+
+                        <div class="container">
+                        
+                            <div class="row p-1 ">
+                                
+                                <div class="form-floating">
+                                    <input 
+                                        type = "text" 
+                                        id  = "nombreUsuario" 
+                                        class = "form-control"  
+                                        name  = "nombreUsuario"  
+                                        value = ""
+                                        placeholder = "Nombre de usuario" 
+                                        [(ngModel)] = "nombreUsuario"
+                                        
+                                        #nomUsu="ngModel"
+                                        maxlength="50"
+                                        minlength="4"
+                                        [ngClass]="{'is-valid': !nomUsu.invalid, 'is-invalid': nomUsu.invalid}"
+                                        required 
+                                    />
+                                    <label for="nombreUsuario">Nombre de usuario</label>
+
+                                    <div class="text-light" *ngIf="nomUsu.invalid && (nomUsu.dirty || nomUsu.touched)">
+                                        <div class="text-light" *ngIf="nomUsu.errors?.['minlength']">
+                                            Ingresar minimo 4 caracteres
+                                        </div>
+                                        
+                                        <div class="text-light" *ngIf="nomUsu.errors?.['required']">
+                                            Ingresar un valor para Nombre usuario
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                        
+                           <div class="row p-1">
+                                <div class="form-floating">
+                                    <input 
+                                        type = "password" 
+                                        id = "password"
+                                        class = "form-control" 
+                                        name = "password" 
+                                        value = ""
+                                        placeholder = "Contraseña"
+                                        [(ngModel)] = "password"
+                                        
+                                        #pass="ngModel"
+                                        maxlength="50"
+                                        minlength="4"
+                                        [ngClass]="{'is-valid': !pass.invalid, 'is-invalid': pass.invalid}"
+                                        required  
+                                    />
+                                    <label for="password">Contraseña</label> 
+                                    
+                                    <div class="text-light" *ngIf="pass.invalid && (pass.dirty || pass.touched)">
+                                        <div class="text-light" *ngIf="pass.errors?.['minlength']">
+                                            Ingresar minimo 4 caracteres
+                                        </div>
+                                        
+                                        <div class="text-light" *ngIf="pass.errors?.['required']">
+                                            Ingresar un valor para Nombre usuario
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                           </div>   
+                        </div>
+                              
+                       <!--  <div class="modal-footer pt-1">                   -->
+                            
+                            <div class="row m-2 p-1">
+                                <div class="d-grid col-6 p-1">
+                                    <button type="submit" class="btn btn-primary"  [disabled]="!f.valid">
+                                        Ingresar
+                                    </button>
+                                </div>
+                                <div class="d-grid col-6 p-1">
+                                    <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </div>
+                           
+                            
+                        <!-- </div> -->
+                        
+                        <div class="pb-2 text-center text-light">
+                            <small>
+                                Usuario: <strong>admin</strong>  Contraseña: <strong>admin</strong> 
+                            </small>
+                        </div>
+                      
+                    </form>    
+                </div>
+            </div>
+        </div> <!-- modal -->
+
+    </div>
+</nav>
+<!-- menu -->

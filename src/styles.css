@@ -1,0 +1,76 @@
+
+
+
+
+#encabezado {
+    background-color: #052c36;
+}
+
+#logo {
+    width: 120px;
+}
+
+.redes-img {
+    padding: 2px;
+    font-size: 2em;
+    color: white;
+}
+
+
+#user-img {
+    padding: 2px;
+    /*font-size: 1.5em;*/
+    color: white;
+}
+
+.accion-ico {
+    font-size: 1.2em;
+}
+
+#btn_arriba {
+    background-color: #052c36;
+    color: #b9b9b9;
+}
+
+#btn_arriba:hover {
+    color: #fff;
+}
+
+#login-img {
+    padding: 1px;
+    font-size: 5em;
+    color: #b9b9b9;
+}
+
+#acerca_header {
+    background-color: #084b5c;
+}
+
+.pie-pagina {
+    min-height: 30vh;
+}
+
+/* contenedor de los forms edit y nuevo */
+#contenedor {
+    width: 80%;
+    background-color: #084b5c; 
+}
+
+
+
+#educacion, #experiencia {
+    background-color: #e9e9e9;
+}
+
+.btn-grey {
+    background-color: #e9e9e9;
+    color: #000;
+    
+}
+
+.btn-normal {
+    background-color: #fff;
+    color: #000;
+    
+}
+

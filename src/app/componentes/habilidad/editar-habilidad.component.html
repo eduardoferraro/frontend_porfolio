@@ -1,0 +1,124 @@
+
+<div class="container-fluid mt-3 mb-1 p-3 rounded-3" id="contenedor" *ngIf="habilidadModel">
+    <div class="row">
+        <div class="col-lg-3 col-sm-12">
+            <img class="img-fluid rounded-circle  mx-auto p-sm-4 d-block" src="assets/images/habilidades.jpg" alt="">
+
+        </div>
+
+
+        <div class="col-lg-9 col-sm-12 pr-3">
+
+            <h2 class="text-light">Agregar habilidad</h2>
+
+            <form (ngSubmit)="onUpdate()" #f="ngForm">
+                <div class="row">
+                    <div class="col-9 col-sm-12 p-2">
+
+                        <div class="form-floating">
+                            <input 
+                                type="text" 
+                                id="nombreHabilidad"
+                                class="form-control" 
+                                placeholder="Nombre de la Habilidad" 
+                                name="nombreHabilidad" 
+                                [(ngModel)]="habilidadModel.nombreHabilidad"
+                                
+                                #hab="ngModel"
+                                maxlength="50"
+                                minlength="1"
+                                [ngClass]="{'is-valid': !hab.invalid, 'is-invalid': hab.invalid}"
+                                required
+                            >
+                            <label for="nombreHabilidad">Nombre de la Habilidad</label>
+
+                        </div>
+                    </div>
+
+                    <div class="col-3 p-2">
+                        <div class="form-floating">
+                            <input 
+                                type="number" 
+                                id="cantidadHabilidad" 
+                                class="form-control" 
+                                placeholder="%"
+                                name="cantidadHabilidad" 
+                                [(ngModel)]="habilidadModel.cantidadHabilidad" 
+                                
+                                #ch="ngModel"
+                                max="100"
+                                min="1"
+                                step="1"
+                                pattern="\d*"
+                                [ngClass]="{'is-valid': !ch.invalid, 'is-invalid': ch.invalid}"
+                                required
+                            >
+
+                           
+
+                            <label for="cantidadHabilidad">%</label>
+                        </div>
+                    </div>
+
+  
+
+                </div>
+                
+                                  
+
+            
+                <!-- mensajes de validacion -->
+                <div class="row">
+                    <div class="col-12">
+                        
+                        <div class="text-light" *ngIf="hab.invalid && (hab.dirty || hab.touched)">
+                            <div *ngIf="hab.errors?.['minlength']">
+                                Introducir un nombre de habilidad con 1 caracter como mínimo
+                            </div>
+                            <div class="text-light" *ngIf="hab.errors?.['required']">
+                                Se debe ingresar un nombre de Habilidad
+                            </div>
+                        </div>
+
+
+                        <div class="text-light" *ngIf="ch.invalid && (ch.dirty || ch.touched)">
+                            <div *ngIf="ch.errors?.['min']">
+                                Se debe introducir un % mayor o igual a 1
+                            </div>
+                            <div *ngIf="ch.errors?.['max']">
+                                Se debe introducir un % menor o igual a 100
+                            </div>
+
+                            <div *ngIf="ch.errors?.['pattern']">
+                                Se debe introducir un % entero
+                            </div>
+
+                            <div class="text-light" *ngIf="ch.errors?.['required']">
+                                Se debe ingresar un valor en %
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row text-center">
+                    <div class="d-grid col-6 p-2">
+                        <button class="btn btn-primary" [disabled]="!f.valid">
+                            Guardar cambios
+                        </button>
+                    </div>
+
+                    <div class="col-6 d-grid p-2">
+                        <button class="btn btn-danger" type="button" (click)="onCancel()">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+
+    </div>
+</div>

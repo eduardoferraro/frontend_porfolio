@@ -1,0 +1,188 @@
+
+<div class="container-fluid mt-3 mb-1 p-3 rounded-3" id="contenedor" *ngIf="proyectoModel">
+    <div class="row">
+        <div class="col-lg-3 col-sm-12">
+            <img class="img-fluid rounded-circle  mx-auto p-sm-4 d-block" src="assets/images/proyectos.jpg" alt="">
+
+        </div>
+
+
+        <div class="col-lg-9 col-sm-12 pr-3">
+
+            <h2 class="text-light">Modificar proyecto</h2>
+
+            <form (ngSubmit)="onUpdate()" #f="ngForm">
+                <div class="row">
+                    <div class="col-8 p-2">
+
+                        <div class="form-floating">
+                            <input 
+                                type="text" 
+                                id="nombreProyecto"
+                                class="form-control" 
+                                placeholder="Nombre del proyecto" 
+                                name="nombreProyecto" 
+                                [(ngModel)]="proyectoModel.nombreProyecto"
+                                
+                                #nomPro="ngModel"
+                                maxlength="50"
+                                minlength="1"
+                                [ngClass]="{'is-valid': !nomPro.invalid, 'is-invalid': nomPro.invalid}"
+                                required
+                            >
+                            <label for="nombreTitulo">Nombre del proyecto</label>
+                        </div>
+                    </div>
+
+                    <div class="col-4 p-2">  
+                        <div class="form-floating">
+                            <input 
+                                type="number" 
+                                id="anio" 
+                                class="form-control" 
+                                placeholder="Año"
+                                name="anio" 
+                                [(ngModel)]="proyectoModel.anio" 
+                                
+                                #an="ngModel"
+                                max="2023"
+                                min="1900"
+                                step="1"
+                                [ngClass]="{'is-valid': !an.invalid, 'is-invalid': an.invalid}"
+                                required
+                            >
+                            <label for="anio">Año</label>
+
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!-- mensajes de validacion -->
+                <div class="row">
+                    
+                    <div class="text-light" *ngIf="nomPro.invalid && (nomPro.dirty || nomPro.touched)">
+                        <div *ngIf="nomPro.errors?.['minlength']">
+                            Nombre del proyecto debe tener 1 caracter como minimo
+                        </div>
+
+                        <div *ngIf="an.errors?.['maxlength']">
+                            Nombre del proyecto debe tener 50 caracteres como maximo
+                        </div> 
+                        
+                        <div class="text-light" *ngIf="an.errors?.['required']">
+                            Se debe ingresar un valor para nombre del proyecto
+                        </div>
+                    </div>
+                    
+                    <div class="text-light" *ngIf="an.invalid && (an.dirty || an.touched)">
+                        <div *ngIf="an.errors?.['min']">
+                            Año del proyecto no puede ser menor a 1900
+                        </div>
+
+                        <div *ngIf="an.errors?.['max']">
+                            Año del proyecto no puede ser mayor a 2023
+                        </div> 
+                        
+                        <div class="text-light" *ngIf="an.errors?.['required']">
+                            Se debe ingresar un valor en Año
+                        </div>
+                    </div>
+
+                    
+                </div>
+              
+
+                <div class="row">
+                    <div class="col col-sm-12 p-2">  
+                        <div class="form-floating">
+                            <textarea 
+                                class="form-control" 
+                                id="descripcionProyecto" 
+                                name="descripcionProyecto"
+                                placeholder="Descripcion del proyecto" 
+                                [(ngModel)]="proyectoModel.descripcionProyecto" 
+                                style="height: 120px;"
+                                
+                                #desPro="ngModel"
+                                maxlength="400"
+                                minlength="1"
+                                [ngClass]="{'is-valid': !desPro.invalid, 'is-invalid': desPro.invalid}"
+                                required
+                            >
+                            </textarea> 
+                            <label for="descripcionProyecto">Descripcion del proyecto</label>
+
+                            <div class="text-light" *ngIf="desPro.invalid && (desPro.dirty || desPro.touched)">
+                                <div *ngIf="desPro.errors?.['minlength']">
+                                    Descripcion del proyecto debe tener 1 caracter como mínimo
+                                </div>
+
+                                <div class="text-light" *ngIf="desPro.errors?.['required']">
+                                    Se debe ingresar un valor en descripcion del proyecto
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col col-sm-12 p-2">  
+                        <div class="form-floating">
+                            <input 
+                                type="text"
+                                class="form-control" 
+                                id="linkProyecto" 
+                                name="linkProyecto"
+                                placeholder="Link del proyecto" 
+                                [(ngModel)]="proyectoModel.linkProyecto" 
+                                #lp="ngModel"
+                                maxlength="200"
+                                minlength="5"
+                                [ngClass]="{'is-valid': !lp.invalid, 'is-invalid': lp.invalid}"
+                                required
+                            >
+                            <label for="linkProyecto">Link del proyecto</label>
+
+                            <div class="text-light" *ngIf="lp.invalid && (lp.dirty || lp.touched)">
+                                <div *ngIf="lp.errors?.['minlength']">
+                                    Link del proyecto debe tener 1 caracter como mínimo
+                                </div>
+
+                                <div class="text-light" *ngIf="lp.errors?.['required']">
+                                    Se debe ingresar un valor en link del proyecto
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+
+                <div class="row text-center">
+                    <div class="d-grid col-6 p-2">
+                        <button class="btn btn-primary" [disabled]="!f.valid">
+                            Guardar cambios
+                        </button>
+                    </div>
+
+                    <div class="col-6 d-grid p-2">
+                        <button class="btn btn-danger" type="button" (click)="onCancel()">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+

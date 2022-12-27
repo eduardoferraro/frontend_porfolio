@@ -2,7 +2,7 @@
   <div class="container-fluid" id="experiencia" *ngIf="experienciaModel">
     <div class="row border-bottom">
         <div class="col-sm-3 d-flex justify-content-center align-items-center">
-            <div class="col-8">
+            <div class="col-8 pt-2">
                 <img class="img-thumbnail rounded-circle  mx-auto d-block" src="assets/images/experiencia.jpg" alt="">
 
                 <div class="d-flex justify-content-center align-items-center pt-4">
@@ -21,12 +21,13 @@
         
         <div class="col-sm-9 p-4  align-content-center">
             <div class="row pt-3 pb-3  align-content-center">
-                <div class="col-10 d-flex justify-content-start">
+                <!-- <div class="col-10 d-flex justify-content-start"> -->
+                <div [ngClass]="isLogged ? 'col-10 d-flex justify-content-start' : 'col-12 d-flex justify-content-start'"  >  
                     <h1 class="display-4">Experiencia laboral</h1> 
                 </div>
                 
                 
-                <div class="col-1 d-flex justify-content-center" >
+                <div class="col-1 d-flex justify-content-center" *ngIf="isLogged" >
                 </div>
                 
                 <div class="col-1 d-flex justify-content-center" *ngIf="isLogged" >
@@ -51,7 +52,8 @@
              <!-- input datos dinamicos -->
             
             <div class="row pb-2" *ngFor="let exp of experienciaModel">
-                <div class="col-10">
+                <!-- <div class="col-10"> -->
+                <div [ngClass]="isLogged ? 'col-10' : 'col-12'">
                     <div class="card" style="max-width: 85%;">
                         <div class="card-body">
                             <h5 class="card-title"  style="color:#084b5c;">{{exp.nombreEmpresa}}</h5>

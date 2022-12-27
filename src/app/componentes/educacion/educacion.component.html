@@ -22,12 +22,13 @@
        
         <div class="col-sm-9 p-4 align-content-center">
             <div class="row pt-3 pb-3">
-                <div class="col-10 d-flex justify-content-start ">
+                <!-- <div class="col-10 d-flex justify-content-start "> -->
+                <div [ngClass]="isLogged ? 'col-10 d-flex justify-content-start' : 'col-12 d-flex justify-content-start'"  >    
                     <h1 class="display-4">Formación Educativa</h1> 
                 </div>
                 
                 
-                <div class="col-1 d-flex justify-content-center" >
+                <div class="col-1 d-flex justify-content-center" *ngIf="isLogged">
                 </div>
                 
                 <div class="col-1 d-flex justify-content-center" *ngIf="isLogged" >
@@ -52,7 +53,8 @@
              <!-- input datos dinamicos -->
 
             <div class="row pt-2 pb-2" *ngFor="let edu of educacionModel">
-                <div class="col-10 ">
+               <!--  <div class="col-10 "> -->
+                <div [ngClass]="isLogged ? 'col-10' : 'col-12'">
                     <div class="card" style="max-width: 80%;">
                         <div class="row g-0">
                             <div class="col-md-3">

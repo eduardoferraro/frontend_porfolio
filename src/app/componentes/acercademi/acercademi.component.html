@@ -3,8 +3,7 @@
     <div class="row border-bottom">
         
         <div class="col-sm-3 d-flex justify-content-center align-items-center">     
-            <div class="col-12">
-            <!-- <div class="col-8"> -->    
+            <div class="col-8">    
                 <img class="img-fluid rounded-circle mx-auto d-block" src="{{personaModel.imagenPersona}}" alt="">
                                
                 <div class="d-flex justify-content-center align-items-center pt-4">
@@ -19,9 +18,7 @@
                 
             </div>
             
-            <!-- <div class="col-1 d-flex justify-content-center" >
-            </div> 
- -->
+            <!-- <div class="col-1 d-flex justify-content-center"></div> -->
 
            
         </div>
@@ -30,12 +27,11 @@
             <div class="row pt-3 pb-3">
                 <div [ngClass]="isLogged ? 'col-10 d-flex justify-content-start' : 'col-12 d-flex justify-content-start'"  > 
                 <!-- <div class="col-10 d-flex justify-content-start" > --> 
-                    <h2>{{personaModel.nombre + ' ' + personaModel.apellido}}</h2>
+                    <h1 class="display-4">{{personaModel.nombre + ' ' + personaModel.apellido}}</h1>
                     
                 </div>
             
-                <!-- <div class="col-1 d-flex justify-content-center">
-                </div> -->
+                <!-- <div class="col-1 d-flex justify-content-center"></div> -->
                 <div class="col-1 d-flex justify-content-center" *ngIf="isLogged">
                 </div>
                 
@@ -90,13 +86,11 @@
                     
                 </div>
 
-                <!-- <div class="col-1 d-flex justify-content-center">
-                </div> -->
+                <!-- <div class="col-1 d-flex justify-content-center"></div> -->
                 <div class="col-1 d-flex justify-content-center" *ngIf="isLogged">
                 </div>
 
-                <!-- <div class="col-1 d-flex justify-content-center">
-                </div> -->
+                <!-- <div class="col-1 d-flex justify-content-center"></div> -->
                 <div class="col-1 d-flex justify-content-center" *ngIf="isLogged">
                 </div>
                                 
